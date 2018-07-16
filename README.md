@@ -5,15 +5,13 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/mulinbc/hyperledger.svg)][docker url]
 [![MicroBadger Size](https://img.shields.io/microbadger/image-size/mulinbc/hyperledger.svg)][docker url]
 [![MicroBadger Layers](https://img.shields.io/microbadger/layers/mulinbc/hyperledger.svg)][docker url]
-![license](https://img.shields.io/github/license/mulinbc/hyperledger.svg)
+[![license](https://img.shields.io/github/license/mulinbc/hyperledger.svg)](LICENSE)
 
 ## 简介
 
-[Hyperledger Fabric]是一个区块链框架的实现，它是Linux基金会托管的Hyperledger项目之一，最初由Digital Asset和IBM贡献。Hyperledger Fabric允许组件即插即用(例如共识和成员服务)，这作为开发具有模块化架构的应用程序或解决方案的基础。Hyperledger Fabric利用容器技术来托管被称为“链代码”的智能合约，其中包含系统的应用程序逻辑。
+[Hyperledger Fabric]是一个区块链框架的实现，是Linux基金会托管的Hyperledger项目之一，最初由Digital Asset和IBM贡献。Hyperledger Fabric允许组件即插即用(例如共识和成员服务)，这作为开发具有模块化架构的应用程序或解决方案的基础。Hyperledger Fabric利用容器技术来托管被称为“链代码”的智能合约，其中包含系统的应用程序逻辑。
 
-## 本项目的由来
-
-由于众所周知的网络原因以及Hyperledger Fabric环境配置的复杂性，本项目通过docker in docker技术简化的环境配置，只需要**一步**即可完成环境搭建，只需要**一条**命令就可以构建第一个fabric网络。本项目的docker镜像提供的组件如下：
+由于Hyperledger Fabric环境配置的复杂性以及众所周知的网络原因，初次接触很难在短时间内配置完成。本项目通过docker in docker技术简化的环境配置，只需要**一步**即可完成环境搭建，只需要**一条**命令就可以构建第一个fabric网络。本项目提供的组件如下：
 
 - [Hyperledger Fabric]
 - [Hyperledger Explorer]
@@ -22,7 +20,7 @@
 
 ## 版本说明
 
-- [v0.1.0 - 20180715](https://github.com/mulinbc/hyperledger/blob/master/release_notes/v0.1.0.md)
+- [v0.1.0 - 20180715](release_notes/v0.1.0.md)
 
 ## 如何使用
 
@@ -75,6 +73,7 @@
 1. 如遇到explorer不能访问的情况检查
     - 由于导入数据库需要一段时间，检查postgres容器是否启动完成，运行`docker logs postgres`查看docker容器的日志，如果输出`database system is ready to accept connections`则说明容器启动成功，运行`bootstrap.sh upexp`重试
     - 检查`～/hyperledger/blockchain-explorer/app/platform/fabric/config.json`配置文件中的路径是否正确，配置方法参考<https://github.com/hyperledger/blockchain-explorer#Fabric-Network-Setup>
+    - 如果启动的是`fabcar`例子的话，需要将`～/hyperledger/blockchain-explorer/app/platform/fabric/config.json`配置文件中`grpcs`改为`grpc`，删除多余信息，检查配置路径
 1. 如有建议或BUG可以创建issue，创建方法参考<https://guides.github.com/features/issues>
 
 ## 致谢
